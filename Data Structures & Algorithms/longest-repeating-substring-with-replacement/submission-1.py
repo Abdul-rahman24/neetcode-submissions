@@ -1,0 +1,24 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        left=0
+        max_freq=0
+        freq={}
+        res=0
+
+        for right in range(len(s)):
+
+            freq[s[right]]=freq.get(s[right],0)+1
+
+            max_freq=max(freq.values())
+
+            
+
+            while (right-left+1)-max_freq>k:
+                freq[s[left]]-=1
+                left+=1
+
+            max_freq=max(freq.values())
+
+            res=max(res,right-left+1)
+        return res
+        
